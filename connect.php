@@ -1,6 +1,5 @@
 <?php
-//$link = mysqli_connect("localhost","root","");
-//$db=mysqli_select_db($link,"facture");
+
 $base= mysqli_connect('127.0.0.1', "root", "", "test1");
  
 /* Vérification de la connexion */

@@ -1,7 +1,6 @@
 <?php
 include('connect.php');
 
-
 ?>
 <html>
  <head>
@@ -36,31 +35,31 @@ include('connect.php');
 
 $idclient = $_POST['client'] ; 
 
- $requete = "INSERT INTO `devis`(`id`, `id_client`) VALUES (NULL,'$idclient');";
+$requete = "INSERT INTO `document`(`id`, `id_client`) VALUES (NULL,'$idclient');";
 $result = mysqli_query($base , $requete);
 
 ?>
 
 
 
-<form method='GET' action='resultat.php'>
-<table border='1'>
-<tr>
-<td colspan='5'>
+ <form method='GET' action='resultat.php'>
+ <table border='1'>
+  <tr>
+  <td colspan='5'>
     <div class="12u$">
-										<div class="select-wrapper">
-<select name="choix">
+       <div class="select-wrapper">
+ <select name="choix">
     <option value="FACTURE">DEVIS</option>
     <option value="BON DE LIVRISON">BON DE LIVRISON</option>
     <option value="AVOIRS">AVOIRS</option>
 
-</select>
+ </select>
         </div>
     </div>
-</td>
-</tr>
-<tr>
-<td>
+  </td>
+  </tr>
+ <tr>
+ <td>
 <?php
 $query = ('SELECT * FROM produit');
 $reponce = mysqli_query($base,$query);
@@ -73,7 +72,10 @@ while($donnees = mysqli_fetch_array($reponce))
     Quantité : <input type="number" name="<?php echo 'nombre'.$i ;?>">
  
 <br />
-<?php $i++; } ?></td></tr></table>
+<?php $i++; } ?>
+ </td>
+ </tr>
+</table>
 <input type='submit' value='Confirmer'></form>
 
          <!-- Footer -->

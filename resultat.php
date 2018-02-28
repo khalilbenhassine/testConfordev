@@ -7,7 +7,7 @@ include('connect.php');
 ?>
 
 <?php
-$retour1 = mysqli_query($base,'SELECT * FROM devis ORDER BY id DESC LIMIT 1');
+$retour1 = mysqli_query($base,'SELECT * FROM document ORDER BY id DESC LIMIT 1');
 $donnees1 = mysqli_fetch_array($retour1);
 
 $choix=$_GET['choix'];
@@ -39,7 +39,7 @@ while($i <= $i2)
     
     $totale=$totale+$prixtotale ;
 if ($quantite >= 1){
-$requete = "INSERT INTO `devis_produit` VALUES (NULL,'$nom','$prix','$prixtotale','$id','$quantite');"; 
+$requete = "INSERT INTO `document_produit` VALUES (NULL,'$nom','$prix','$prixtotale','$id','$quantite');"; 
 $result = mysqli_query($base , $requete);
 
    
@@ -49,14 +49,14 @@ $result = mysqli_query($base , $requete);
 $totalet=$totale+($totale*0.1) ;
 
 
-$sql = "UPDATE `devis` SET `totale` = '$totale', `totale_tva` = '$totalet', `type` ='$choix' WHERE `id` = '$id'"; 
+$sql = "UPDATE `document` SET `totale` = '$totale', `totale_tva` = '$totalet', `type` ='$choix' WHERE `id` = '$id'"; 
 $result = mysqli_query($base , $sql);
 
 
 ?>
 
 <?php
-$retour3 = mysqli_query($base,'SELECT * FROM devis WHERE id = '.$id);
+$retour3 = mysqli_query($base,'SELECT * FROM document WHERE id = '.$id);
 $donnees4 = mysqli_fetch_array($retour3);
 
 ?>
@@ -78,34 +78,38 @@ else
 <?php
 }?>
 <h5 align="center">Date: <?php echo $donnees4['date']; ?></h5>
-<table style="margin-top:40px"><tr>
-<td width='230'>
-<?php echo $varnom; ?><br>
-<?php echo $varadresse1; ?> <br>
-<?php echo $varadresse2; ?> <br>
-<?php echo $varmail; ?><br>
-<?php echo $vartelephone; ?> <br>
-</td>               
-    </tr>
 
+<table style="margin-top:40px">
+<tr>
+ <td width='230'>
+ <?php echo $varnom; ?><br>
+ <?php echo $varadresse1; ?> <br>
+ <?php echo $varadresse2; ?> <br>
+ <?php echo $varmail; ?><br>
+ <?php echo $vartelephone; ?> <br>
+ </td>               
+</tr>
 </table>
 
 <div>
-<table style="margin-left:900px"><tr>
-<td width='230'>
-<?php echo $donnees3['nom']; ?>&nbsp;<?php echo $donnees3['prenom']; ?><br> 
-<?php echo $donnees3['email']; ?><br>
-<?php echo $donnees3['adresse']; ?><br>
-<?php echo $donnees3['gsm']; ?><br>    
-</td>               
-    </tr></table>
-    </div>
+<table style="margin-left:900px">
+ <tr>
+  <td width='230'>
+  <?php echo $donnees3['nom']; ?>&nbsp;<?php echo $donnees3['prenom']; ?><br> 
+  <?php echo $donnees3['email']; ?><br>
+  <?php echo $donnees3['adresse']; ?><br>
+  <?php echo $donnees3['gsm']; ?><br>    
+  </td>               
+ </tr>
+</table>
+</div>
+
 <div align="center">
-<table   style="margin-top:90px ;"  >
+<table   style="margin-top:90px ;" >
 <tr><th width='300'> Nom de produit </th><th width='200'> Prix unitaire </th><th width='200'> Quantit&eacute; </th><th width='200'> Prix Totale </th></tr>
 <?php
 
-$ret = 'SELECT * FROM devis_produit WHERE id_devis = '.$id;
+$ret = 'SELECT * FROM document_produit WHERE id_doc = '.$id;
 $do = mysqli_query($base,$ret);
 while($don = mysqli_fetch_array($do)){
 echo '<tr><th>';
@@ -122,7 +126,7 @@ echo '</th></tr>';
 </table>
     <br>
     <br>
-<table style="margin-left:300px" ><tr><td width='400'></td><td><b>TOTAL HTVA:<?php echo $donnees4['totale']; ?>FCFA </b></td></tr><tr><td width='400'></td><td><b>TVA: 10%</b></td></tr><tr><td width='400'></td><td><b>Total T.T.C: <?php echo $donnees4['totale_tva']; ?>FCFA</b></td></tr></table>
+<table style="margin-left:300px" ><tr><td width='400'></td><td><b>TOTAL HTVA:<?php echo $donnees4['totale']; ?>&nbsp;FCFA </b></td></tr><tr><td width='400'></td><td><b>TVA: 10%</b></td></tr><tr><td width='400'></td><td><b>Total T.T.C: <?php echo $donnees4['totale_tva']; ?>&nbsp;FCFA</b></td></tr></table>
 </div>
 
 <br><br><br><br><br><br><br><br>

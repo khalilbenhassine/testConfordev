@@ -31,13 +31,15 @@ include('connect.php');
 		
 					</ul>
 				</nav>
-			</header>
+</header>
 
 <form action="rechercher.php" method="Post">
     <div class="6u 12u$(4)">
-        <input type="text" name="requete" size="5"> </div>  <br />
-<input type="submit" class="button alt small" value="recherche">
+      <input type="text" name="requete" size="5" required> 
+    </div>  <br/>
+ <input type="submit" class="button alt small" value="recherche">
 </form>
+        
 <h2 align="center">choisissez votre client</h2>
 <form method='POST' action='devis.php'>
 
@@ -50,13 +52,13 @@ while($donnees = mysqli_fetch_array($reponce))
 ?>
 
 <div class="4u 12u$(3)">
-<input type='radio' id="<?php echo $donnees['id']; ?>" name='client'  value ='<?php echo $donnees['id']; ?>'>
+    <input type='radio' id="<?php echo $donnees['id']; ?>" name='client'  value ='<?php echo $donnees['id']; ?>'>
     <label for="<?php echo $donnees['id']; ?>"><?php echo $donnees['nom']; ?> <?php echo $donnees['prenom']; ?></label>
-    </div>
+</div>
     
     <br />
 <?php } ?>
-       <br />   <br />   <br />   <br />   <br />
+       <br/>   <br/>   <br/>   <br/>   <br/>
 <div align="center">
  <input  type='submit' value='Envoyer'> 
 </div>

@@ -58,12 +58,12 @@ $pdf->SetXY(24,125);
 $str = utf8_decode('Produit');
 $pdf->SetFont('Arial','B','12');
 $pdf->Cell(54,10,$str,1,0,'C');
-$pdf->Cell(27,10,"Prix Unitaire",1,0,'C');
+$pdf->Cell(40,10,"Prix Unitaire",1,0,'C');
 $pdf->Cell(27,10,utf8_decode("Quantité"),1,0,'C');
-$pdf->Cell(27,10,utf8_decode("Prix"),1,2,'C');
+$pdf->Cell(40,10,utf8_decode("Prix"),1,2,'C');
 $pdf->SetFont('Arial','','12');
 
-$ret = 'SELECT * FROM devis_produit WHERE id_devis = '.$id;
+$ret = 'SELECT * FROM document_produit WHERE id_doc = '.$id;
 $do = mysqli_query($base,$ret);
 
 $i3 = 1;
@@ -71,9 +71,9 @@ while($don = mysqli_fetch_array($do)){
 
 $pdf->SetXY(24,128+$i3*7);
 $pdf->Cell(54,7,utf8_decode($don['nom_produit']),1,0);
-$pdf->Cell(27,7,utf8_decode($don['prix_produit']. ' FCFA'),1,0);
+$pdf->Cell(40,7,utf8_decode($don['prix_produit']. ' CFA'),1,0);
 $pdf->Cell(27,7,utf8_decode($don['quantit']),1,0);
-$pdf->Cell(27,7,utf8_decode($don['prixtotale_produit'] . ' FCFA'),1,0);
+$pdf->Cell(40,7,utf8_decode($don['prixtotale_produit'] . ' CFA'),1,0);
     $i3++;
 }
 
@@ -93,9 +93,9 @@ $pdf->Cell(27,7,utf8_decode(""),1,2,'C');
 
 //$pdf->SetFont('Arial','B','14');
 
-$pdf->Text(120,135+$i3*7,utf8_decode('TOTAL HTVA: '.$donnees4['totale'].' FCFA'));
+$pdf->Text(120,135+$i3*7,utf8_decode('TOTAL HTVA: '.$donnees4['totale'].' CFA'));
 $pdf->Text(120,140+$i3*7,utf8_decode('TVA: 10%'));
-$pdf->Text(120,145+$i3*7,utf8_decode('TOTAL TVAC: '.$donnees4['totale_tva'].' FCFA'));
+$pdf->Text(120,145+$i3*7,utf8_decode('TOTAL TVAC: '.$donnees4['totale_tva'].' CFA'));
 $pdf->SetFont('Arial','','12');
 $pdf->Output("pdf/".$choix.$id.".pdf","F");
 echo "<a href=\"pdf/".$choix.$id.".pdf\">PDF DE LA ".$choix."</a>";
