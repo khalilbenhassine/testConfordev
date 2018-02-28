@@ -40,7 +40,7 @@ C:\wamp64\www
 http://localhost/testcomfordev/
 ```
 
-
+**Note:** Vous pouver générer les documents en format pdf . 
 
 
 
